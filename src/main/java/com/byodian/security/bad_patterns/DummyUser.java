@@ -1,4 +1,4 @@
-package com.byodian.security;
+package com.byodian.security.bad_patterns;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+// Writing a minimal implementation of the UserDetails interface
 public class DummyUser implements UserDetails {
     @Override
     public String getUsername() {

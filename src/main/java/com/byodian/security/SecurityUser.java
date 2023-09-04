@@ -1,34 +1,32 @@
 package com.byodian.security;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-public class SimpleUser implements UserDetails {
-    private final String username;
-    private final String password;
+// avoid mixing responsibilities and try to write you code as decoupled as possible to increase the maintainability of your app
+public class SecurityUser implements UserDetails {
+    private final User user;
 
-    public SimpleUser(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public SecurityUser(User user) {
+        this.user = user;
     }
 
     @Override
     public String getUsername() {
-        return this.username;
+        return user.getUsername();
     }
 
     @Override
     public String getPassword() {
-        return this.password;
+        return user.getPassword();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "READ");
+        return List.of(user::getAuthority);
     }
 
     @Override
