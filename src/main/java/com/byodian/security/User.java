@@ -7,9 +7,9 @@ import jakarta.persistence.Id;
 // 1. store users in a database you need a class to represent the persistent entity
 // 2. Or retrieve users through a web service from another system, then you
 // need a data transfer object to represent the user interfaces.
-@Entity
+//@Entity
 public class User {
-    @Id
+//    @Id
     private Long id;
     private String username;
     private String password;

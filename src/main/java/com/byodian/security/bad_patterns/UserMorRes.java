@@ -12,10 +12,7 @@ import java.util.List;
 // things get even more complicated
 // This code isn't friendly at all
 // How can we write this code to be cleaner? -> try to separate those
-@Entity
 public class UserMorRes implements UserDetails {
-    @Id
-    private Long id;
     private String username;
     private String password;
     private String authority;
@@ -41,7 +38,7 @@ public class UserMorRes implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "READ");
+        return List.of(() -> authority);
     }
 
     @Override
