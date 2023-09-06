@@ -1,4 +1,4 @@
-package com.byodian.security.config;
+package com.byodian.security.config.custom_provider;
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;

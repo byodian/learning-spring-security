@@ -11,12 +11,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class ProjectConfig3 {
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = new UserMorRes("sele", "12345", "read");
-        List<UserDetails> users = List.of(user);
+        UserDetails user1 = new UserMorRes("sele", "12345", "read");
+        UserDetails user2 = new UserMorRes("john", "123456", "read");
+        List<UserDetails> users = List.of(user1, user2);
         return new InMemoryUserDetailsService(users);
     }
 

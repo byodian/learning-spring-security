@@ -1,7 +1,5 @@
 package com.byodian.security.bad_patterns;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,17 +11,14 @@ import java.util.List;
 // This code isn't friendly at all
 // How can we write this code to be cleaner? -> try to separate those
 public class UserMorRes implements UserDetails {
-    private String username;
-    private String password;
-    private String authority;
+    private final String username;
+    private final String password;
+    private final String authority;
 
     public UserMorRes(String username, String password, String authority) {
         this.username = username;
         this.password = password;
         this.authority = authority;
-    }
-
-    public UserMorRes() {
     }
 
     @Override

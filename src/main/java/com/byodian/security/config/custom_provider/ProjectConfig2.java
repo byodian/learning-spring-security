@@ -1,4 +1,4 @@
-package com.byodian.security.config;
+package com.byodian.security.config.custom_provider;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
