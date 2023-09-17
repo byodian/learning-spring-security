@@ -2,9 +2,9 @@ package com.byodian.security.config;
 
 import com.byodian.security.AuthenticationLoggingFilter;
 import com.byodian.security.RequestValidationFilter;
+import com.byodian.security.StaticKeyAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +16,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 public class ProjectConfig {
+    private final StaticKeyAuthenticationFilter filter;
+    public ProjectConfig(StaticKeyAuthenticationFilter staticKeyAuthenticationFilter) {
+        this.filter =  staticKeyAuthenticationFilter;
+
+    }
+
     @Bean
     UserDetailsService userDetailsService() {
         var user = User.withUsername("john")
@@ -40,7 +46,12 @@ public class ProjectConfig {
         .addFilterAfter( // Adding a filter after an existing one in the chain
             new AuthenticationLoggingFilter(),
             BasicAuthenticationFilter.class
-        ).authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+        )
+        .addFilterAt( // Adding the filter at the location of another in the chain
+            filter,
+            BasicAuthenticationFilter.class
+        )
+        .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
 
         return http.build();
     }
