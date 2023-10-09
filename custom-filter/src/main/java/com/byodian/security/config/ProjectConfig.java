@@ -22,14 +22,14 @@ public class ProjectConfig {
 
     }
 
-    @Bean
-    UserDetailsService userDetailsService() {
-        var user = User.withUsername("john")
-            .password("12345")
-            .authorities("read")
-            .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+//    @Bean
+//    UserDetailsService userDetailsService() {
+//        var user = User.withUsername("john")
+//            .password("12345")
+//            .authorities("read")
+//            .build();
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
